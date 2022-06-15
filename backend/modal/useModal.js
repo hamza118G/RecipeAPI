@@ -1,33 +1,20 @@
-const mongoose = require ('mongoose')
+const mongoose = require('mongoose')
 
-const RecipeSchema = mongoose.Schema({
-    user:{
-        type: mongoose.Schema.Types.ObjectId,
-        
-},
+const userSchema = mongoose.Schema({
     name: {
-        type: String,
-        required: [true, 'please add a name ']
+        type:String,
+        required: [true, 'please add a name']
     },
-    description: {
-        type: String,
-        required: [true, 'please add a description']
+    email: {
+        type:String,
+        required: [true, 'please add a email']
     },
-    
-    preptime:  {
-        type: Number,
-        required: [true, 'please add Prep Time'],
-        unique: true
+    password: {
+        type:String,
+        required: [true, 'please add a password']
     },
-
-    difficulty: {
-        type: String,
-        required:[true, 'please add difficulty number']
-    },
-    vegetarian: {
-            type:Boolean,
-            required:[true, 'please add vegetable or not']
-    },
-    
-  })
-  module.exports = mongoose.model('recipe', RecipeSchema)
+},
+{
+    timestamps: true
+})
+module.exports = mongoose.model('User', userSchema)

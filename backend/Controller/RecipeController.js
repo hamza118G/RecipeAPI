@@ -4,7 +4,7 @@ const recipe = require ('../modal/Recipemodel')
 
 const getRecipe = asyncHandler (async (req, res) => {
 
-    const goals = await recipe.find()
+    const goals = await recipe.find({ user: req.user.id })
     res.status(200).json(goals)
 })
 
@@ -38,6 +38,7 @@ const setRecipe = asyncHandler( async (req, res) => {
         preptime: req.body.preptime,
         difficulty: req.body.difficulty,
         vegetarian: req.body.vegetarian,
+        user:req.body.id,
 
     })
     res.status(200).json(recipes)
@@ -49,6 +50,17 @@ const updateRecipe = asyncHandler( async (req, res)=> {
     if (!recipes){
         res.status(400)
         throw new Error('Goal not Found')
+    }
+
+    //Check for User
+    if(!user) {
+        res.status(401)
+        throw new Error ('User not Found')
+    }
+
+    if(Recipe.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized')
     }
 
     const updateRecipe = await recipe.findByIdAndUpdate(req.param.id, req.body, {new:true,})
@@ -64,6 +76,19 @@ const deleteRecipe = asyncHandler( async (req, res)=> {
         res.status(400)
         throw new Error('Goal not Found')
     }
+
+    
+    //Check for User
+    if(!user) {
+        res.status(401)
+        throw new Error ('User not Found')
+    }
+
+    if(recipe.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized')
+    }
+
     await recipe.remove()
 
     res.status(200).json({ id: req.params.id })
