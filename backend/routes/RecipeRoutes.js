@@ -4,7 +4,7 @@ const {
     getRecipe, 
     setRecipe,
     updateRecipe,
-    deleteRecipe,
+    deleteRecipe
 
 } = require('../controller/RecipeController')
 const {protect} = require('../middleware/authmiddleware')

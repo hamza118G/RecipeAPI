@@ -1,12 +1,12 @@
 const mongoose = require ('mongoose')
 
 const RecipeSchema = mongoose.Schema({
-  user:{
-          type: mongoose.Schema.Types.ObjectId,
-          required: true,
-          ref:'user'
-          
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
   },
+
     name: String,
     description:   String,
     preptime:   Number,

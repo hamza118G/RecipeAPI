@@ -13,7 +13,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-app.use('/Recipe', require('./routes/RecipeRoutes'))
+app.use('/recipe', require('./routes/RecipeRoutes'))
 app.use('/User', require('./routes/UserRoutes'))
 
 app.use(errorHandler)
