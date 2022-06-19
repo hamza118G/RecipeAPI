@@ -20,3 +20,8 @@ app.use(errorHandler)
 
 
 app.listen(port, () => console.log(`server started on port ${port}`))
+
+//NODE_ENV = developement
+//PORT = 5000
+//MONGO_URI = mongodb+srv://hamza:Hamza@cluster0.nrctqny.mongodb.net/?retryWrites=true&w=majority
+//JWT_SECRET = abc123
