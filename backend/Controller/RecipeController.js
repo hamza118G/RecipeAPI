@@ -4,8 +4,8 @@ const recipe = require ('../modal/Recipemodel')
 
 const getRecipe = asyncHandler (async (req, res) => {
 
-    const recipe = await recipe.find({ user: req.user.id })
-    res.status(200).json(goals)
+    const recipes = await recipe.find({ user: req.user.id })
+    res.status(200).json(recipes)
 })
 
 
@@ -89,7 +89,7 @@ const deleteRecipe = asyncHandler( async (req, res)=> {
         throw new Error('User not authorized')
     }
 
-    await recipe.remove()
+    await recipes.remove()
 
     res.status(200).json({ id: req.params.id })
 })
